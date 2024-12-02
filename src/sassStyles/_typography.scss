@@ -1,0 +1,35 @@
+@import './variables';
+@import './mixins';
+
+h1 {
+    @include responsive-heading($h1-desktop, $h1-mobile);
+  }
+  
+h2 {
+@include responsive-heading($h2-desktop, $h2-mobile);
+}
+
+h3 {
+@include responsive-heading($h3-desktop, $h3-mobile);
+}
+
+h4 {
+@include responsive-heading($h4-desktop, $h4-mobile);
+}
+
+button {
+    font-size: $p-desktop;
+}
+
+p {
+font-size: $p-desktop;
+
+@include respond-above(mobile) {
+    font-size: $p-mobile;
+}
+}
+
+.sub-text {
+    @include responsive-heading($sub-text, $sub-text-mobile);
+    color: $text-sub-color;
+}

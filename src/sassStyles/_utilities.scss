@@ -1,0 +1,18 @@
+@import './variables';
+
+.text-align-center {
+    text-align: center;
+}
+
+.u-message {
+    padding: 0 0.5rem;
+    &--error {
+        font-weight: bold;
+        color: $text-error-color;
+    }
+}
+
+.text-special {
+    color: $text-color-outstanding !important;
+    font-weight: bold;
+}

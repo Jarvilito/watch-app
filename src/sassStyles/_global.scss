@@ -1,0 +1,77 @@
+@import './variables';
+@import './transition';
+@import './utilities';
+* {
+  box-sizing: border-box;
+}
+
+ul, li, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  background-color: $bg-light;
+  box-sizing: border-box;
+  height: 100vh;
+  min-height: 100%;
+
+}
+
+a {
+    text-decoration: none;
+    transition: all .4s ease-in-out;
+    color: $text-primary-color;
+}
+
+#root {
+  height: 100%;
+}
+
+.link-hover-animation {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 0.5rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background-color: currentColor;
+    transition: $link-hover-transition
+  }
+  &:hover::after {
+    width: 100%; 
+  }
+}
+
+.image-zoom-transition {
+  display: inline-block;
+  overflow: hidden;
+  transition: $zoom-transition /* Transition for shadow and scale */
+}
+
+.image-zoom-transition img {
+  display: block;
+  width: 100%;
+  transition: transform 0.3s ease; /* Smooth zoom transition */
+}
+
+.image-zoom-transition:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Elevated shadow on hover */
+  transform: translateY(-2px); /* Optional: slight upward motion */
+}
+
+.image-zoom-transition:hover img {
+  transform: scale(1.1); /* Zoom effect on hover */
+}

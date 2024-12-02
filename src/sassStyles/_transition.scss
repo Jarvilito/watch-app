@@ -1,0 +1,7 @@
+@import './variables';
+
+$background-transition: background-color $transition-duration-reg ease, border-bottom $transition-duration-reg ease;
+
+$link-hover-transition: width $transition-duration-reg ease;
+
+$zoom-transition: box-shadow $transition-duration-reg ease, transform $transition-duration-reg;

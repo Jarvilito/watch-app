@@ -1,0 +1,65 @@
+// MATERIAL UI OVERRIDE
+@import './sassStyles/variables';
+
+.login__tab.Mui-selected {
+    color: black !important;
+}
+
+.MuiButton-root {
+    &.form__btn {
+        margin-bottom: 1rem;
+      
+        &--site {
+            margin-top: 2rem;
+        }
+      
+        &--facebook {
+          background-color: rgb(59, 89, 152);
+        }
+      
+        &--google {
+          background-color: #ff784e;
+        }
+      }
+
+    &.btn {
+        &--full-width {
+          width: 100%;
+        }
+        &--primary {
+            &:hover {
+                color: $text-primary-color;
+            }
+        }
+    }
+}
+
+
+// layout
+.header__wrap, .footer__wrap {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container takes full height of the viewport */
+  }
+  
+  .main-content {
+    flex-grow: 1; /* Allow the main content to grow and fill the available space */
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  
+  .footer {
+    background-color: $bg-dark;
+    color: $text-secondary-color;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+  

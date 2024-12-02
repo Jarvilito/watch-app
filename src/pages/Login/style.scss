@@ -1,0 +1,21 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__wrap {
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 25rem;
+}
+
+.login__form {
+    padding: 2rem 0;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+    }
+}

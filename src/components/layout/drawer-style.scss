@@ -1,0 +1,31 @@
+@import '../../sassStyles/_variables';
+.drawer {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 1rem;
+    border-left: 1px solid $border-dark;
+    background-color: $bg-dark-2;
+    width: 20%;
+}
+
+.drawer__header {
+    padding-left: 1.5rem;
+    padding-bottom: .75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid $border-dark;
+}
+
+.drawer__list {
+    flex: 1;
+    padding-bottom: 5rem;
+}
+.drawer__item {
+    border-bottom: 1px solid $border-light-dark;
+    padding: 2rem 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}

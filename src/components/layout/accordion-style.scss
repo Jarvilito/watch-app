@@ -1,0 +1,22 @@
+@import '../../sassStyles/_variables';
+
+.accordion {
+    margin-top: 1.5rem;
+}
+.accordion-list__main {
+    display: flex;
+    align-items: center;
+    
+}
+
+.accordion-list__sub {
+    margin-left: 2rem;
+    border-left: 2px solid $border-dark;
+}
+
+.accordion-list__sub-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+
+}

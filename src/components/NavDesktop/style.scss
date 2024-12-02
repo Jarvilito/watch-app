@@ -1,0 +1,11 @@
+@import '../../sassStyles/variables';
+@import '../../sassStyles/mixins';
+@import '../../sassStyles/transition';
+
+
+.nav-desktop {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: $bg-light;
+}

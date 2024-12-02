@@ -1,0 +1,36 @@
+@import './variables';
+
+//breakpoints
+// Mixin for min-width (above the breakpoint)
+@mixin respond-above($size) {
+    @if map-has-key($breakpoints, $size) {
+      @media (min-width: map-get($breakpoints, $size)) {
+        @content;
+      }
+    } @else {
+      @warn "No value found for `#{$size}` in $breakpoints map.";
+    }
+  }
+  
+  // Mixin for max-width (below the breakpoint)
+  @mixin respond-below($size) {
+    @if map-has-key($breakpoints, $size) {
+      @media (max-width: map-get($breakpoints, $size)) {
+        @content;
+      }
+    } @else {
+      @warn "No value found for `#{$size}` in $breakpoints map.";
+    }
+  }
+
+
+  //typography mixin
+  @mixin responsive-heading($desktop-size, $mobile-size) {
+    font-size: $desktop-size;
+  
+    // Apply mobile size for screens below the specified size
+    @include respond-below(md) {
+      font-size: $mobile-size;
+    }
+  }
+  

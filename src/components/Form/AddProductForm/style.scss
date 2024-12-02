@@ -1,0 +1,23 @@
+.add-product-dialog__content {
+    margin-top: 1rem;
+}
+
+.image-upload__wrap {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.image-upload__item  {
+    position: relative;
+}
+
+.image-upload__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+
+}
