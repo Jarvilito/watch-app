@@ -15,6 +15,7 @@ import MultipleSelectInput from '../MultipleSelectInput';
 import SwitchInput from '../SwitchInput';
 import {
 	addCategory,
+	getCategoriesAll,
 	getParentsCategories,
 	resetAlert,
 	updateCategory,
@@ -22,7 +23,7 @@ import {
 import AlertPopup from '../../layout/AlertPopup';
 import { AppDispatch } from '../../../redux/createStore';
 import { SelectorState } from '../../../redux/sharedActionTypes';
-
+import { CategoryFormState } from '../../../redux/Category/category.type';
 const initialForm = {
 	name: '',
 	parentCategory: [],
@@ -31,7 +32,7 @@ const initialForm = {
 
 interface AddCategoryFormProps {
 	open: boolean;
-	category?: {};
+	category?: CategoryFormState;
 	setCloseDialog: () => void;
 }
 
@@ -52,7 +53,7 @@ const AddCategoryForm = ({
 		(state: SelectorState) => state.category
 	);
 
-	const [form, setForm] = useState(initialForm);
+	const [form, setForm] = useState<CategoryFormState>(initialForm);
 
 	const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
@@ -60,8 +61,10 @@ const AddCategoryForm = ({
 		if (!category) {
 			await dispatch(addCategory(form));
 		} else {
-			await dispatch(updateCategory(form));
+			await dispatch(updateCategory(category.id, form));
 		}
+
+		dispatch(getCategoriesAll());
 	};
 	const handleCloseAlert = () => {
 		dispatch(resetAlert);
@@ -112,7 +115,7 @@ const AddCategoryForm = ({
 		setCloseDialog();
 	};
 
-	const viewMode = category ? 'edit' : 'create';
+	const viewMode = category?.name ? 'edit' : 'create';
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -130,6 +133,13 @@ const AddCategoryForm = ({
 			setOpenPopup(true);
 		}
 	}, [isSuccess, error]);
+
+	useEffect(() => {
+		if (category?.name) {
+			console.log(category);
+			setForm(category);
+		} else setForm(initialForm);
+	}, [category]);
 
 	return (
 		<React.Fragment>

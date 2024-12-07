@@ -3,67 +3,64 @@
 @import '../../sassStyles/transition';
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: $z-fixed;
-    width: 100%;
-    transition: $background-transition;
-    &--homepage {
-        position: fixed;
-    }
+	position: sticky;
+	top: 0;
+	z-index: $z-fixed;
+	width: 100%;
+	transition: $background-transition;
 
-    &--scrolled {
-        background-color: $bg-light;
-        .header__wrap {
-            a {
-                color: $text-primary-color;
-            }
-            color: $text-primary-color;
+	&--homepage {
+		position: fixed;
+	}
 
-            border-bottom: 1px solid $border-primary-color;
-        }
-
-    }
+	&--scrolled {
+		border-bottom: 1px solid $border-primary-color;
+		background-color: $bg-light;
+		.header__wrap {
+			a {
+				color: $text-primary-color;
+			}
+			color: $text-primary-color;
+		}
+	}
 }
 
 .header__wrap {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    color: $text-secondary-color;
-    width: 100%;
-    padding: 0.5rem 1rem;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	color: $text-secondary-color;
+	width: 100%;
+	padding: 0.5rem 1rem;
 
-    @include respond-above(md) {
-        padding: 1.5rem 2rem 1rem;
-    }
+	@include respond-above(md) {
+		padding: 1.5rem 2rem 1rem;
+	}
 
-    a {
-        font-size: 0.875rem;
-        color: $text-secondary-color;
-    }
+	a {
+		font-size: 0.875rem;
+		color: $text-secondary-color;
+	}
 
-    * {
-        cursor: pointer;
-    }
-
-
+	* {
+		cursor: pointer;
+	}
 }
 
 .header__main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .header__nav-label {
-    font-size: 1rem;
-    margin-left: 1rem;
-    text-transform: uppercase;
+	font-size: 1rem;
+	margin-left: 1rem;
+	text-transform: uppercase;
 }
 
 .header__account-icon {
-    &:not(:last-of-type) {
-       margin-right: 1.5rem;
-    }
+	&:not(:last-of-type) {
+		margin-right: 1.5rem;
+	}
 }

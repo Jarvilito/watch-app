@@ -36,6 +36,8 @@ export interface ProductFormState {
 	gender: string;
 	images: any[];
 	customField?: Array<customField>;
+	categories: string[];
+	subCategories: string[];
 }
 
 export interface GetProductsAction {

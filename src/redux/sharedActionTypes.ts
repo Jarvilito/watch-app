@@ -13,7 +13,10 @@ export const SHARED_ACTIONS = {
 export type SharedActionTypes =
 	| { type: typeof SHARED_ACTIONS.IS_LOADING_TOGGLE }
 	| { type: typeof SHARED_ACTIONS.IS_SUCCESS; payload: boolean }
-	| { type: typeof SHARED_ACTIONS.IS_ERROR; payload: string }
+	| {
+			type: typeof SHARED_ACTIONS.IS_ERROR;
+			payload: { message: string } | string;
+	  }
 	| { type: typeof SHARED_ACTIONS.IS_SUCCESS_RESET };
 
 export interface SelectorState {

@@ -19,6 +19,7 @@ export interface CurrentUser {
 	email: string;
 	password: string;
 	firstName?: string;
+	displayName?: string;
 	lastName?: string;
 	mobile?: string | null; // Ensure null is allowed
 	createdDate?: Date;

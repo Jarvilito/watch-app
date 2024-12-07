@@ -2,10 +2,17 @@
 @import '../../sassStyles/mixins';
 @import '../../sassStyles/transition';
 
-
 .nav-desktop {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    background-color: $bg-light;
+	width: 100vw;
+	background-color: $bg-light;
+	overflow: hidden;
+	transition: $height-transition;
+	&--is-hidden {
+		height: 0;
+	}
+
+	&--is-visible {
+		border-top: 1px solid $border-primary-color;
+		height: 100vh;
+	}
 }

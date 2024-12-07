@@ -7,7 +7,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import BaseBtn from '../BaseBtn';
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Divider, Grid2, IconButton, InputAdornment } from '@mui/material';
+import {
+	Box,
+	Divider,
+	Grid2,
+	IconButton,
+	InputAdornment,
+	SelectChangeEvent,
+} from '@mui/material';
 import Upload from '../../Media/Upload';
 import Image from '../../Media/Image';
 import './style.scss';
@@ -27,6 +34,7 @@ import AlertPopup from '../../layout/AlertPopup';
 import { AppDispatch } from '../../../redux/createStore';
 import { SelectorState } from '../../../redux/sharedActionTypes';
 import { ProductFormState } from '../../../redux/Product/product.types';
+import MultipleSelectInput from '../MultipleSelectInput';
 const initialForm: ProductFormState = {
 	brand: '',
 	crystal: '',
@@ -40,6 +48,8 @@ const initialForm: ProductFormState = {
 	quantity: 1,
 	description: '',
 	images: [],
+	categories: [],
+	subCategories: [],
 	customField: [],
 	createdBy: '',
 	dateCreated: new Date(),
@@ -63,6 +73,18 @@ const AddProductForm = ({
 }: AddProductFormProps) => {
 	const { loading, error, isSuccess } = useSelector(
 		(state: SelectorState) => state.product
+	);
+
+	const { allCategories } = useSelector(
+		(state: SelectorState) => state.category
+	);
+
+	const parentCategories = allCategories.filter(
+		(category) => !category.parentCategory.length
+	);
+
+	const subCategories = allCategories.filter(
+		(category) => category.parentCategory.length
 	);
 
 	const [alertType, setAlertType] = useState<
@@ -100,6 +122,14 @@ const AddProductForm = ({
 			...form,
 			[name]: value,
 		});
+	};
+
+	const handleSelectChange = (e: SelectChangeEvent<string | string[]>) => {
+		const { value, name } = e.target;
+		setForm((prevForm) => ({
+			...prevForm,
+			[name]: Array.isArray(value) ? value : value.split(','),
+		}));
 	};
 
 	const handleClearForm = () => {
@@ -346,7 +376,7 @@ const AddProductForm = ({
 									value={form.gender}
 									label='Gender'
 									items={gender}
-									onChange={() => handleFormChange}
+									onChange={handleFormChange}
 								/>
 							</Grid2>
 
@@ -379,10 +409,34 @@ const AddProductForm = ({
 									aria-labelledby='radio-condition-label'
 									name='condition'
 									defaultValue='New'
-									onChange={() => handleFormChange}
+									onChange={handleFormChange}
 									value={form.condition}
 									items={conditionLists}
 									label='Condition'
+								/>
+							</Grid2>
+
+							<Grid2 size={{ xs: 12, sm: 6 }}>
+								<MultipleSelectInput
+									name='categories'
+									label='Select Parent Categories'
+									value={form.categories}
+									labelKey='name'
+									valueKey='id'
+									items={parentCategories}
+									onChange={handleSelectChange}
+								/>
+							</Grid2>
+
+							<Grid2 size={{ xs: 12, sm: 6 }}>
+								<MultipleSelectInput
+									name='subCategories'
+									label='Select Child Categories'
+									value={form.subCategories}
+									labelKey='name'
+									valueKey='id'
+									items={subCategories}
+									onChange={handleSelectChange}
 								/>
 							</Grid2>
 

@@ -9,16 +9,18 @@ const categoryType = {
 };
 
 export interface CategoryFormState {
+	id?: any;
 	name: string;
-	parentCategory?: string[];
+	parentCategory?: any;
 	isEnable: boolean;
 }
 
 export interface CategoryInitialState {
 	loading: boolean;
 	isSuccess: boolean;
-	error: string;
+	error: any;
 	categories: string[];
+	allCategories: CategoryFormState[];
 	category?: {};
 }
 

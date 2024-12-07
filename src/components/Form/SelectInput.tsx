@@ -1,4 +1,10 @@
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import {
+	FormControl,
+	InputLabel,
+	Select,
+	MenuItem,
+	SelectChangeEvent,
+} from '@mui/material';
 
 interface SelectInputProps {
 	labelId: string;
@@ -8,7 +14,7 @@ interface SelectInputProps {
 	value: string;
 	name?: string;
 	fullWidth?: boolean;
-	onChange: () => void;
+	onChange: (e: any) => void;
 }
 
 const SelectInput = ({

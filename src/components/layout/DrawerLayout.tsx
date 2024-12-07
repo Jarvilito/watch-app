@@ -67,15 +67,14 @@ const DrawerLayout = () => {
 	const isAdminRoute = location.pathname.startsWith('/admin');
 	const menus = isAdminRoute ? adminMenu : userMenu || [];
 
-	useEffect(() => {
-		console.log(menus);
-	}, []);
+	const { currentUser } = useSelector((state: SelectorState) => state.user);
 	return (
 		<div className='drawer'>
 			<div className='drawer__header'>
-				<Avatar sx={{ bgcolor: deepOrange[500] }}>A</Avatar>
-				<h3>Admin</h3>
-				<SupervisedUserCircleOutlinedIcon />
+				<Avatar sx={{ bgcolor: deepOrange[500] }}>
+					{currentUser?.displayName?.[0]}
+				</Avatar>
+				<h3>Hi {currentUser?.displayName || 'Guess'}</h3>
 			</div>
 			<ul className='drawer__list'>
 				{menus.map((item) => (

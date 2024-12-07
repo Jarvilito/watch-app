@@ -21,6 +21,7 @@ import { SelectorState } from '../../redux/sharedActionTypes';
 import { AppDispatch } from '../../redux/createStore';
 import AlertPopup from '../../components/layout/AlertPopup';
 import BaseBtn from '../../components/Form/BaseBtn';
+import IconBtn from '../../components/Form/IconBtn';
 // import
 const paginationModel = { page: 0, pageSize: 5 };
 
@@ -75,24 +76,28 @@ const Product = () => {
 			width: 200,
 			renderCell: (params: any) => (
 				<div style={{ display: 'flex', gap: '0.5rem' }}>
-					<IconButton
+					<IconBtn
 						color='success'
 						onClick={() => {
 							setProduct(params.row);
 							setOpenDialog(true); // Open the form dialog when editing
 						}}
-					>
-						<Edit />
-					</IconButton>
+						title='Edit Product'
+						icon={<Edit />}
+					/>
+
 					{/* <IconButton
             color="info"
             onClick={() => handleView(params.row.id)}
           >
             <Visibility />
           </IconButton> */}
-					<IconButton color='error' onClick={() => handleDelete(params.row)}>
-						<Delete />
-					</IconButton>
+					<IconBtn
+						color='error'
+						title='Delete Product'
+						onClick={() => handleDelete(params.row)}
+						icon={<Delete />}
+					/>
 				</div>
 			),
 		},

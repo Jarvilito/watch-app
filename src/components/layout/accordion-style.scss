@@ -1,22 +1,27 @@
 @import '../../sassStyles/_variables';
 
 .accordion {
-    margin-top: 1.5rem;
+	margin-top: 1.5rem;
 }
 .accordion-list__main {
-    display: flex;
-    align-items: center;
-    
+	display: flex;
+	align-items: center;
+
+	.title {
+		margin-left: 1.5rem;
+	}
 }
 
 .accordion-list__sub {
-    margin-left: 2rem;
-    border-left: 2px solid $border-dark;
+	margin-left: 2rem;
+	border-left: 4px solid $border-primary-color;
+	padding: 0 1.5rem;
 }
 
 .accordion-list__sub-item {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-
+	display: flex;
+	align-items: center;
+	&:not(:last-child) {
+		border-bottom: 1px solid $border-light-dark;
+	}
 }

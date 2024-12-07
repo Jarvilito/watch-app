@@ -10,6 +10,7 @@ const INITIAL_STATE = {
 	isSuccess: false,
 	error: '',
 	categories: [],
+	allCategories: [],
 	category: {},
 };
 
@@ -53,17 +54,31 @@ const categoryReducer = (
 				error: '',
 			};
 
-		case categoryType.IS_ERROR:
+		case categoryType.SET_CATEGORIES:
 			if ('payload' in action) {
-				console.log(action.payload);
 				return {
 					...state,
-					isSuccess: false,
-					error: `${action.payload}`,
+					allCategories: action.payload,
 				};
 			}
 
 			break;
+
+		case categoryType.IS_ERROR:
+			if ('payload' in action) {
+				const errorMessage =
+					typeof action.payload === 'object' && 'message' in action.payload
+						? (action.payload as { message: string }).message
+						: `${action.payload}`;
+
+				return {
+					...state,
+					isSuccess: false,
+					error: errorMessage,
+				};
+			}
+			break;
+
 		default:
 			return state;
 	}

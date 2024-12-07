@@ -1,18 +1,38 @@
 @import './variables';
 
 .text-align-center {
-    text-align: center;
+	text-align: center;
 }
 
 .u-message {
-    padding: 0 0.5rem;
-    &--error {
-        font-weight: bold;
-        color: $text-error-color;
-    }
+	padding: 0 0.5rem;
+	&--error {
+		font-weight: bold;
+		color: $text-error-color;
+	}
 }
 
 .text-special {
-    color: $text-color-outstanding !important;
-    font-weight: bold;
+	color: $text-color-outstanding !important;
+	font-weight: bold;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+.text-capitalize {
+	text-transform: capitalize;
+}
+
+.is-visible {
+	display: block;
+}
+
+.is-hidden {
+	display: none;
 }

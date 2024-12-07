@@ -61,6 +61,8 @@ export const handleGetProducts =
 					createdByID: data.createdByID,
 					gender: data.gender,
 					images: data.images,
+					categories: data.categories,
+					subCategories: data.subCategories,
 					...data,
 				};
 			});

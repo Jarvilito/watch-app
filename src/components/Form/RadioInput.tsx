@@ -14,7 +14,7 @@ interface RadioInputProps {
 	ariaLabelledBy?: string;
 	defaultValue: string;
 	row: boolean;
-	onChange: () => void;
+	onChange: (e: any) => void;
 	name?: string;
 }
 

@@ -6,18 +6,34 @@ import AddCategoryForm from '../../components/Form/AddCategoryForm';
 import CategoryLists from '../../components/layout/CategoryLists';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/createStore';
-import { resetAlert } from '../../redux/Category/category.actions';
+import {
+	getCategoriesAll,
+	resetAlert,
+} from '../../redux/Category/category.actions';
+import { CategoryFormState } from '../../redux/Category/category.type';
+
+const initialForm = {
+	name: '',
+	parentCategory: [],
+	isEnable: true,
+};
 
 const Category = () => {
-	const [category, setCategory] = useState(null);
+	const [category, setCategory] = useState<CategoryFormState>(initialForm);
 	const [openAlert, setOpenAlert] = useState(false);
 	const [openDialog, setOpenDialog] = useState(false);
 
 	const dispatch = useDispatch<AppDispatch>();
 
 	const handleCloseDialog = () => {
-		setCategory(null);
+		setCategory(initialForm);
 		setOpenDialog(false);
+	};
+
+	const handleUpdate = (val: CategoryFormState) => {
+		console.log(val);
+		setCategory(val);
+		setOpenDialog(true);
 	};
 
 	useEffect(() => {
@@ -45,9 +61,13 @@ const Category = () => {
 				label='Add Category'
 			/>
 
-			<AddCategoryForm open={openDialog} setCloseDialog={handleCloseDialog} />
+			<AddCategoryForm
+				open={openDialog}
+				setCloseDialog={handleCloseDialog}
+				category={category}
+			/>
 
-			<CategoryLists />
+			<CategoryLists handleUpdate={handleUpdate} />
 		</div>
 	);
 };

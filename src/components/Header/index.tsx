@@ -28,22 +28,19 @@ const leftNavLists = [
 const mainNavList = [
 	{
 		label: 'Men',
-		url: '/men',
 	},
 
 	{
 		label: 'Women',
-		url: '/women',
 	},
 
 	{
 		label: 'Collection',
-		url: '/man',
 	},
 
 	{
-		label: 'Strap',
-		url: '/man',
+		label: 'About Us',
+		url: '/about-us',
 	},
 ];
 
@@ -51,6 +48,9 @@ const Header = () => {
 	const currentUser = useSelector(
 		(state: SelectorState) => state.user.currentUser
 	);
+
+	const [isNavOpen, setIsNavOpen] = useState(false);
+	const [selectedNav, setSelectedNav] = useState('');
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isHomePageState, setIsHomePageState] = useState(false);
 	const location = useLocation();
@@ -65,6 +65,11 @@ const Header = () => {
 			link: `${currentUser ? '/account' : '/login'}`,
 		},
 	];
+
+	const handleNavClick = (nav: any) => {
+		setIsNavOpen((prev) => !prev);
+		setSelectedNav(nav?.label);
+	};
 
 	useEffect(() => {
 		const isHomePage = location.pathname === '/';
@@ -84,7 +89,11 @@ const Header = () => {
 		<header
 			className={`header
             ${isHomePageState ? 'header--homepage' : ''}
-            ${isScrolled || !isHomePageState ? 'header--scrolled' : ''}
+            ${
+							isScrolled || isNavOpen || !isHomePageState
+								? 'header--scrolled'
+								: ''
+						}
         `}
 		>
 			<div className='header__wrap'>
@@ -111,14 +120,22 @@ const Header = () => {
 
 					<div className='header__main-list'>
 						{mainNavList.map((list) => {
-							return (
-								<a
-									href={list.url}
+							return !list.url ? (
+								<span
+									key={list.label}
+									className='header__nav-label link-hover-animation'
+									onClick={() => handleNavClick(list)}
+								>
+									{list.label}
+								</span>
+							) : (
+								<Link
+									to={list.url}
 									key={list.label}
 									className='header__nav-label link-hover-animation'
 								>
 									{list.label}
-								</a>
+								</Link>
 							);
 						})}
 					</div>
@@ -145,7 +162,7 @@ const Header = () => {
 					)}
 				</div>
 			</div>
-			<NavDesktop />
+			<NavDesktop isOpen={isNavOpen} />
 		</header>
 	);
 };

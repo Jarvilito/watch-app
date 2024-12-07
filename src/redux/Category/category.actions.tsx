@@ -3,6 +3,7 @@ import {
 	handleAddCategory,
 	handleGetCategories,
 	handleGetParentCategories,
+	handleUpdateCategory,
 } from '../../firebase/categories';
 import categoryType, {
 	CategoryFormState,
@@ -17,6 +18,7 @@ export const addCategory =
 			await handleAddCategory(payload);
 			dispatch({ type: categoryType.IS_SUCCESS });
 		} catch (error: any) {
+			console.log(error);
 			dispatch({ type: categoryType.IS_ERROR, payload: error });
 			return error;
 		} finally {
@@ -25,18 +27,21 @@ export const addCategory =
 	};
 
 export const updateCategory =
-	(payload: CategoryFormState) =>
+	(id: string, payload: CategoryFormState) =>
 	async (dispatch: Dispatch<CategoryActionTypes>) => {
 		dispatch({ type: categoryType.IS_LOADING_TOGGLE });
 
 		try {
-			await handleAddCategory(payload);
+			console.log(id, payload);
+			await handleUpdateCategory(id, payload);
 			dispatch({ type: categoryType.IS_SUCCESS });
 		} catch (error: any) {
 			const errorPayload = {
 				code: error.code || 'unknown_error',
 				message: error.message || 'An unexpected error occurred',
 			};
+			console.log(error);
+
 			dispatch({ type: categoryType.IS_ERROR, payload: errorPayload });
 		} finally {
 			dispatch({ type: categoryType.IS_LOADING_TOGGLE });
@@ -48,7 +53,11 @@ export const getCategoriesAll =
 		dispatch({ type: categoryType.IS_LOADING_TOGGLE });
 
 		try {
+			const categories = await handleGetCategories();
+			console.log(categories);
+			dispatch({ type: categoryType.SET_CATEGORIES, payload: categories });
 		} catch (error: any) {
+			console.log(error);
 			dispatch({ type: categoryType.IS_ERROR, payload: error });
 		} finally {
 			dispatch({ type: categoryType.IS_LOADING_TOGGLE });
@@ -57,13 +66,13 @@ export const getCategoriesAll =
 
 export const getParentsCategories =
 	() => async (dispatch: Dispatch<CategoryActionTypes>) => {
-		console.log('fetching');
 		dispatch({ type: categoryType.IS_LOADING_TOGGLE });
 
 		try {
 			const categories = await handleGetParentCategories();
 			dispatch({ type: categoryType.GET_CATEGORIES, payload: categories });
 		} catch (error: any) {
+			console.log(error);
 			const errorPayload = {
 				code: error.code || 'unknown_error',
 				message: error.message || 'An unexpected error occurred',
