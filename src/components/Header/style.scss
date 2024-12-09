@@ -57,6 +57,12 @@
 	font-size: 1rem;
 	margin-left: 1rem;
 	text-transform: uppercase;
+	padding-bottom: 0.9375rem;
+	&--is-active {
+		color: $text-color-active;
+
+		border-bottom: 1px solid $text-color-active;
+	}
 }
 
 .header__account-icon {

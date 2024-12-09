@@ -56,6 +56,7 @@ const Product = () => {
 	const columns = [
 		{ field: 'brand', headerName: 'Brand' },
 		{ field: 'model', headerName: 'Model' },
+		{ field: 'gender', headerName: 'Gender' },
 		{
 			field: 'price',
 			headerName: 'Price',
@@ -77,12 +78,12 @@ const Product = () => {
 			renderCell: (params: any) => (
 				<div style={{ display: 'flex', gap: '0.5rem' }}>
 					<IconBtn
-						color='success'
+						color="success"
 						onClick={() => {
 							setProduct(params.row);
 							setOpenDialog(true); // Open the form dialog when editing
 						}}
-						title='Edit Product'
+						title="Edit Product"
 						icon={<Edit />}
 					/>
 
@@ -93,8 +94,8 @@ const Product = () => {
             <Visibility />
           </IconButton> */}
 					<IconBtn
-						color='error'
-						title='Delete Product'
+						color="error"
+						title="Delete Product"
 						onClick={() => handleDelete(params.row)}
 						icon={<Delete />}
 					/>
@@ -112,23 +113,23 @@ const Product = () => {
 	}, []);
 
 	return (
-		<div className='product'>
-			<h1 className='page-header'>Products</h1>
+		<div className="product">
+			<h1 className="page-header">Products</h1>
 			<AlertPopup
 				onClose={() => setOpenAlert(false)}
-				severity='success'
+				severity="success"
 				position={{ vertical: 'top', horizontal: 'center' }}
 				open={openAlert}
 			>
 				Product Delete Successfully!
 			</AlertPopup>
 			<BaseBtn
-				className='btn is-square is-action-with-icon'
-				color='addBtn'
+				className="btn is-square is-action-with-icon"
+				color="addBtn"
 				startIcon={<Add />}
 				onClick={() => setOpenDialog(true)}
-				variant='contained'
-				label='Add Product'
+				variant="contained"
+				label="Add Product"
 			/>
 
 			<AddProductForm
@@ -151,14 +152,14 @@ const Product = () => {
 			<Dialog
 				open={deleteDialog}
 				onClose={() => setDeleteDialog(false)}
-				aria-labelledby='alert-dialog-title'
-				aria-describedby='alert-dialog-description'
+				aria-labelledby="alert-dialog-title"
+				aria-describedby="alert-dialog-description"
 			>
-				<DialogTitle id='alert-dialog-title'>
+				<DialogTitle id="alert-dialog-title">
 					Delete {product?.brand} - {product?.model} ?
 				</DialogTitle>
 				<DialogContent>
-					<DialogContentText id='alert-dialog-description'>
+					<DialogContentText id="alert-dialog-description">
 						Once deleted, this product cannot be recover anymore, are you sure
 						you want to proceed?
 					</DialogContentText>
@@ -167,10 +168,10 @@ const Product = () => {
 					<Button onClick={() => setDeleteDialog(false)}>Cancel</Button>
 					<BaseBtn
 						loading={loading}
-						color='error'
-						variant='contained'
+						color="error"
+						variant="contained"
 						onClick={() => handleDeleteProduct()}
-						label='Delete'
+						label="Delete"
 					/>
 				</DialogActions>
 			</Dialog>

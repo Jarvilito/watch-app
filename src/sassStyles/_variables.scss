@@ -5,8 +5,7 @@ $text-success-color: #25ad03;
 $text-sub-color: #616161;
 $text-error-color: #b50505;
 $text-color-outstanding: #00e676;
-;
-
+$text-color-active: #2196f3;
 $bg-light: #f7f5f5;
 $bg-dark: #1f1d1d;
 $bg-dark-2: #eeeeee;
@@ -19,10 +18,10 @@ $z-fixed: 999;
 
 //Screen sizes
 $breakpoints: (
-  xs: 480px,
-  sm: 768px,
-  md: 1024px,
-  lg: 1200px,
+	xs: 480px,
+	sm: 768px,
+	md: 1024px,
+	lg: 1200px,
 );
 
 $transition-duration-reg: 0.3s;
@@ -43,4 +42,4 @@ $h2-mobile: 1.25rem;
 $h3-mobile: 1rem;
 $h4-mobile: 0.75rem;
 $p-mobile: 1rem;
-$sub-text-mobile: 0.50rem;
+$sub-text-mobile: 0.5rem;

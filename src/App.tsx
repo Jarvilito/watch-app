@@ -29,6 +29,7 @@ import WithAdminAuth from './hoc/withAdminAuth';
 import WithAuth from './hoc/withAuth';
 import { SelectorState } from './redux/sharedActionTypes';
 import { AppDispatch } from './redux/createStore';
+import { getProducts } from './redux/Product/product.actions';
 
 const userInitialState = {
 	email: '',
@@ -40,6 +41,8 @@ function App() {
 	const currentUser = useSelector<SelectorState>(
 		(state) => state.user.currentUser
 	);
+
+	const { products } = useSelector((state: SelectorState) => state.product);
 	const dispatch = useDispatch<AppDispatch>();
 
 	useEffect(() => {
@@ -83,6 +86,10 @@ function App() {
 			setIsLoading(false);
 		});
 
+		if (!products.length) {
+			dispatch(getProducts());
+		}
+
 		return () => unsubscribe();
 	}, [dispatch]);
 
@@ -92,7 +99,7 @@ function App() {
 				sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
 				open={isLoading}
 			>
-				<CircularProgress color='inherit' />
+				<CircularProgress color="inherit" />
 			</Backdrop>
 		);
 	}
@@ -101,13 +108,13 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<MainLayout>
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route path="/" element={<Home />} />
 					<Route
-						path='/login'
-						element={currentUser ? <Navigate to='/' /> : <Login />}
+						path="/login"
+						element={currentUser ? <Navigate to="/" /> : <Login />}
 					/>
 					<Route
-						path='/account/*'
+						path="/account/*"
 						element={
 							<WithAuth>
 								<Account />
@@ -116,7 +123,7 @@ function App() {
 					/>
 
 					<Route
-						path='/admin/*'
+						path="/admin/*"
 						element={
 							<WithAdminAuth>
 								<Admin />
@@ -124,7 +131,7 @@ function App() {
 						}
 					/>
 
-					<Route path='/graphql' element={<HomeGraphQL />} />
+					<Route path="/graphql" element={<HomeGraphQL />} />
 				</Routes>
 			</MainLayout>
 		</ThemeProvider>

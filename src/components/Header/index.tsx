@@ -17,7 +17,6 @@ import { SelectorState } from '../../redux/sharedActionTypes';
 const leftNavLists = [
 	{
 		label: 'Brands',
-		url: '/brands',
 	},
 	{
 		label: 'New Release',
@@ -28,10 +27,12 @@ const leftNavLists = [
 const mainNavList = [
 	{
 		label: 'Men',
+		imageUrl: 'src/assets/men_nav.png',
 	},
 
 	{
 		label: 'Women',
+		imageUrl: 'src/assets/women_nav.png',
 	},
 
 	{
@@ -67,8 +68,13 @@ const Header = () => {
 	];
 
 	const handleNavClick = (nav: any) => {
-		setIsNavOpen((prev) => !prev);
-		setSelectedNav(nav?.label);
+		if (selectedNav === nav.label) {
+			setSelectedNav('');
+			setIsNavOpen(false);
+		} else {
+			setSelectedNav(nav.label);
+			setIsNavOpen(true);
+		}
 	};
 
 	useEffect(() => {
@@ -96,34 +102,42 @@ const Header = () => {
 						}
         `}
 		>
-			<div className='header__wrap'>
-				<div className='header__left'>
+			<div className="header__wrap">
+				<div className="header__left">
 					{leftNavLists.map((list) => {
 						return (
-							<a
-								href={list.url}
+							<span
 								key={list.label}
-								className='header__nav-label link-hover-animation'
+								className={`${
+									selectedNav === list.label
+										? 'header__nav-label--is-active'
+										: 'link-hover-animation'
+								} header__nav-label`}
+								onClick={() => handleNavClick(list)}
 							>
 								{list.label}
-							</a>
+							</span>
 						);
 					})}
 				</div>
 
-				<div className='header__main'>
+				<div className="header__main">
 					<Box sx={{ mb: 2 }}>
-						<Link to='/'>
-							<img src={Logo} alt='Watch Logo' width={55} height={50} />
+						<Link to="/">
+							<img src={Logo} alt="Watch Logo" width={55} height={50} />
 						</Link>
 					</Box>
 
-					<div className='header__main-list'>
+					<div className="header__main-list">
 						{mainNavList.map((list) => {
 							return !list.url ? (
 								<span
 									key={list.label}
-									className='header__nav-label link-hover-animation'
+									className={`${
+										selectedNav === list.label
+											? 'header__nav-label--is-active'
+											: 'link-hover-animation'
+									} header__nav-label`}
 									onClick={() => handleNavClick(list)}
 								>
 									{list.label}
@@ -132,7 +146,7 @@ const Header = () => {
 								<Link
 									to={list.url}
 									key={list.label}
-									className='header__nav-label link-hover-animation'
+									className="header__nav-label link-hover-animation"
 								>
 									{list.label}
 								</Link>
@@ -141,11 +155,11 @@ const Header = () => {
 					</div>
 				</div>
 
-				<div className='header__account'>
+				<div className="header__account">
 					{accountList.map((item) => {
 						return (
 							<Tooltip key={item.label} title={item.label}>
-								<Link to={item.link || '#'} className='header__account-icon'>
+								<Link to={item.link || '#'} className="header__account-icon">
 									<span>{item.icon}</span>
 								</Link>
 							</Tooltip>
@@ -154,15 +168,18 @@ const Header = () => {
 
 					{}
 					{checkUserIsAdmin(currentUser) && (
-						<Tooltip title='Admin Page'>
-							<Link to='/admin' className='header__account-icon text-special'>
+						<Tooltip title="Admin Page">
+							<Link to="/admin" className="header__account-icon text-special">
 								<DisplaySettingsOutlinedIcon />
 							</Link>
 						</Tooltip>
 					)}
 				</div>
 			</div>
-			<NavDesktop isOpen={isNavOpen} />
+			<NavDesktop
+				isOpen={isNavOpen}
+				selectedNav={selectedNav?.toLocaleLowerCase()}
+			/>
 		</header>
 	);
 };

@@ -63,7 +63,7 @@ const UploadImage = ({
 		setLoadingPercentage(calculatePercentage({ loaded, total }));
 	};
 
-	const onSuccess = (res: string) => {
+	const onSuccess = (res: any) => {
 		console.log('Success', res);
 		handleImageUpload(res);
 		setIsLoading(false);
@@ -80,9 +80,9 @@ const UploadImage = ({
 				authenticator={authenticator}
 			>
 				<IKUpload
-					fileName='test-upload.png'
+					fileName="test-upload.png"
 					onError={() => onError}
-					onSuccess={() => onSuccess}
+					onSuccess={onSuccess}
 					onUploadStart={() => setIsLoading(true)}
 					onUploadProgress={onUploadProgress}
 					style={{ display: 'none' }}
@@ -90,18 +90,18 @@ const UploadImage = ({
 					isPrivateFile={false}
 					useUniqueFileName={true}
 					{...props}
-					accept='image/*,video/*'
+					accept="image/*,video/*"
 					ref={ikUploadRef}
 				/>
 				<BaseBtn
 					loadingProgressCount={loadingPercentage}
-					loadingVariant='determinate'
+					loadingVariant="determinate"
 					loading={isLoading}
 					onClick={() => ikUploadRef?.current?.click()}
 					label={label}
 					startIcon={<CloudUploadOutlined />}
-					variant='contained'
-					color='secondary'
+					variant="contained"
+					color="secondary"
 				/>
 
 				{children}

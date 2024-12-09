@@ -6,6 +6,7 @@
 	width: 100vw;
 	background-color: $bg-light;
 	overflow: hidden;
+	position: fixed;
 	transition: $height-transition;
 	&--is-hidden {
 		height: 0;
@@ -15,4 +16,26 @@
 		border-top: 1px solid $border-primary-color;
 		height: 100vh;
 	}
+}
+
+.nav-desktop__wrapper {
+	padding-top: 3rem;
+	padding-right: 4rem;
+}
+
+.nav-desktop__brand-title {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.nav-desktop__brand-item {
+	color: $text-sub-color;
+	margin-bottom: 0.75rem;
+	cursor: pointer;
+}
+
+.nav-desktop__brand-see-all {
+	margin-top: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid black;
 }
